@@ -5,15 +5,23 @@ package com.example.jokegenerator.model;
  */
 
 public class Joke {
+
+
+    private int id;
     private String setup;
     private String punchLine;
 
-    public Joke(String setup, String punchLine) {
+    public Joke(int id, String setup, String punchLine) {
+        this.id = id;
         this.setup = setup;
         this.punchLine = punchLine;
     }
 
     //getters and setters
+    public int getId() { return id; }
+
+    public void setId(int id) { this.id = id; }
+
     public String getSetup() {
         return setup;
     }

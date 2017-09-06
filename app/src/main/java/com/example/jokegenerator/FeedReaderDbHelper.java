@@ -5,22 +5,28 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 
+
 /**
  * Created by Justin Dang on 9/1/2017.
  */
-
+/*
+    this class is responsible for creating, updating, and deleting the database
+ */
 public class FeedReaderDbHelper extends SQLiteOpenHelper {
 
     //if the schema of the database is changed, update the version number
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "jokes.db";
+
     //put SQL statement in one string
+    //create table string
     private static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE" + FeedReaderContract.FeedEntry.TABLE_NAME +
             " (" + FeedReaderContract.FeedEntry.COLUMN_ID +
-            " INTEGER PRIMARY KEY," + FeedReaderContract.FeedEntry.COLUMN_SETUP +
-            " TEXT, " + FeedReaderContract.FeedEntry.COLUMN_PUNCH_LINE +
+            " INTEGER PRIMARY KEY AUTOINCREMENT," + FeedReaderContract.FeedEntry.COLUMN_SETUP +
+            " TEXT, " + FeedReaderContract.FeedEntry.COLUMN_PUNCHLINE +
             " TEXT)";
+    //delete table string
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS" + FeedReaderContract.FeedEntry.TABLE_NAME;
 
