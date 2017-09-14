@@ -1,9 +1,12 @@
 package com.example.jokegenerator;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.jokegenerator.model.Joke;
 
 
 /**
@@ -51,4 +54,45 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
         //reverts database to previous version
         onUpgrade(db, oldVersion, newVersion);
     }
+
+    //add new row to database
+    public void addJoke(Joke joke) {
+        ContentValues values = new ContentValues();
+        values.put(FeedReaderContract.FeedEntry.COLUMN_ID, joke.getId());
+        values.put(FeedReaderContract.FeedEntry.COLUMN_SETUP, joke.getSetup());
+        values.put(FeedReaderContract.FeedEntry.COLUMN_PUNCHLINE, joke.getPunchLine());
+        SQLiteDatabase db = getWritableDatabase();
+        db.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, values);
+        db.close();
+    }
+
+    //remove row from database
+    public void removeJoke(String jokeID) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("DELETE FROM " + FeedReaderContract.FeedEntry.TABLE_NAME +
+                " WHERE " + FeedReaderContract.FeedEntry.COLUMN_ID +
+                " = " + jokeID + ";");
+    }
+
+    //print database to a string
+    public String databaseToString() {
+        String dbString = "";
+        SQLiteDatabase db = getWritableDatabase();
+        String query = "SELECT * FROM " + FeedReaderContract.FeedEntry.TABLE_NAME + ";";
+        //create cursor for database query
+        Cursor c = db.rawQuery(query, null);
+        //move to first row in database query
+        c.moveToFirst();
+
+        //stops while loop when there's no next row to go to
+        while(!c.isAfterLast()) {
+            dbString += c.getString(c.getColumnIndex(FeedReaderContract.FeedEntry.COLUMN_SETUP));
+            dbString += "\n";
+            dbString += c.getString(c.getColumnIndex(FeedReaderContract.FeedEntry.COLUMN_PUNCHLINE));
+            dbString += "\n\n";
+        }
+        db.close();
+        return dbString;
+    }
+
 }

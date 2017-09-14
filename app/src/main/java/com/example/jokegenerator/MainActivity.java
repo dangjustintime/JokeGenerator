@@ -49,9 +49,9 @@ public class MainActivity extends AppCompatActivity {
         */
 
         //instantiate FeedReaderDbHelper
-        FeedReaderDbHelper mDbHelper = new FeedReaderDbHelper(getApplicationContext());
+        //FeedReaderDbHelper mDbHelper = new FeedReaderDbHelper(getApplicationContext());
 
-        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+        //SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
         //specifiy which columns from the database you are using
         String[] projection =  {
@@ -59,15 +59,17 @@ public class MainActivity extends AppCompatActivity {
                 FeedReaderContract.FeedEntry.COLUMN_PUNCHLINE
         };
 
+        /*
         Cursor cursor = db.query(
-                FeedReaderContract.FeedEntry.TABLE_NAME,
-                projection,
-                null,
-                null,
-                null,
-                null,
-                null
+                FeedReaderContract.FeedEntry.TABLE_NAME,    //table name
+                projection,     //selected columns to display
+                null,       //selected rows, null == show all rows
+                null,       //order of rows displayed
+                null,       //row groups
+                null,       //which row groups to include, null == show all row groups
+                null        //sort order
         );
+        */
 
 
     }
