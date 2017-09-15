@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.jokegenerator.JokeActivity">
+    android:background="@color/pink"
+    tools:context="com.example.jokegenerator.JokeActivity"
+    android:gravity="center">
+    <TextView
+        android:id="@+id/text_view_joke"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:text="Why did the chicken cross the road?"
+        android:textStyle="bold"
+        android:textSize="80sp"
+        android:textColor="#ffffff"/>
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
