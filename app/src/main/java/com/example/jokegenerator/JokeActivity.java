@@ -8,11 +8,15 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.Random;
+
 public class JokeActivity extends AppCompatActivity {
 
-    TextView jokeTextView;
-    LinearLayout jokeActivityLinearLayout;
-
+    private TextView jokeTextView;
+    private LinearLayout jokeActivityLinearLayout;
+    private Random random;
+    private int randomNumber;
+    private MainActivity mainActivity;
 
     FeedReaderDbHelper mDbHelper;
     SQLiteDatabase db;
@@ -30,12 +34,18 @@ public class JokeActivity extends AppCompatActivity {
         jokeTextView = (TextView) findViewById(R.id.text_view_joke);
         jokeActivityLinearLayout = (LinearLayout) findViewById(R.id.linear_layout_joke_activity);
         jokeTextView.setText("Why did the chicken cross the road?");
+        mainActivity = new MainActivity();
+        random = new Random();
+        randomNumber = random.nextInt(10) + 1;
 
+        mainActivity.randomBackgroundColor(jokeActivityLinearLayout, randomNumber);
 
 
         jokeTextView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                jokeActivityLinearLayout.setBackgroundColor(getResources().getColor(R.color.green));
+                random = new Random();
+                randomNumber = random.nextInt(10) + 1;
+                mainActivity.randomBackgroundColor(jokeActivityLinearLayout, randomNumber);
                 jokeTextView.setText("To get to the other side.");
             }
         });

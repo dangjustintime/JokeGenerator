@@ -16,6 +16,8 @@
         android:textStyle="bold"
         android:textSize="80sp"
         android:textColor="#ffffff"
-        android:fontFamily="Arial"/>
+        android:fontFamily="Arial"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"/>
 
 </LinearLayout>

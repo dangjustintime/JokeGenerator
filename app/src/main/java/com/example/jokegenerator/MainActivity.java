@@ -7,22 +7,27 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import java.util.Random;
+
 
 public class MainActivity extends AppCompatActivity {
 
     private ImageView funnyFaceEmojiImageView;
     private LinearLayout mainActivityLinearLayout;
-
+    private Random random;
+    private int randomNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //mainActivityLinearLayout = (LinearLayout) findViewById(R.id.linear_layout_main_activity);
+        mainActivityLinearLayout = (LinearLayout) findViewById(R.id.linear_layout_main_activity);
         funnyFaceEmojiImageView = (ImageView) findViewById(R.id.image_view_funny_face_emoji);
+        random = new Random();
+        randomNumber = random.nextInt(10) + 1;
 
-        //ChangeBackgroundColor(mainActivityLinearLayout);
+        randomBackgroundColor(mainActivityLinearLayout, randomNumber);
 
         funnyFaceEmojiImageView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -30,35 +35,42 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
 
+    public void randomBackgroundColor(View v, int randomNumber) {
+        //change background color every time user opens app
+        switch(randomNumber) {
+            case 1:
+                v.setBackgroundColor(v.getResources().getColor(R.color.blue));
+                break;
+            case 2:
+                v.setBackgroundColor(v.getResources().getColor(R.color.cyan));
+                break;
+            case 3:
+                v.setBackgroundColor(v.getResources().getColor(R.color.deepPurple));
+                break;
+            case 4:
+                v.setBackgroundColor(v.getResources().getColor(R.color.green));
+                break;
+            case 5:
+                v.setBackgroundColor(v.getResources().getColor(R.color.lightBlue));
+                break;
+            case 6:
+                v.setBackgroundColor(v.getResources().getColor(R.color.orange));
+                break;
+            case 7:
+                v.setBackgroundColor(v.getResources().getColor(R.color.pink));
+                break;
+            case 8:
+                v.setBackgroundColor(v.getResources().getColor(R.color.purple));
+                break;
+            case 9:
+                v.setBackgroundColor(v.getResources().getColor(R.color.red));
+                break;
+            case 10:
+                v.setBackgroundColor(v.getResources().getColor(R.color.yellow));
+                break;
+        }
     }
 }
 
-/*
-public void ChangeBackgroundColor(View v) {
-    Random random = new Random();
-    int number = random.nextInt(10) + 1;
-    //change background color every time user opens app
-    if(number == 1) {
-        v.setBackgroundColor(getResources().getColor(R.color.blue));
-    } else if(number == 2) {
-        v.setBackgroundColor(getResources().getColor(R.color.cyan));
-    } else if(number == 3) {
-        v.setBackgroundColor(getResources().getColor(R.color.deepPurple));
-    } else if(number == 4) {
-        v.setBackgroundColor(getResources().getColor(R.color.green));
-    } else if(number == 5) {
-        v.setBackgroundColor(getResources().getColor(R.color.lightBlue));
-    } else if(number == 6) {
-        v.setBackgroundColor(getResources().getColor(R.color.orange));
-    } else if(number == 7) {
-        v.setBackgroundColor(getResources().getColor(R.color.pink));
-    } else if(number == 8) {
-        v.setBackgroundColor(getResources().getColor(R.color.purple));
-    } else if(number == 9) {
-        v.setBackgroundColor(getResources().getColor(R.color.red));
-    } else if(number == 10) {
-        v.setBackgroundColor(getResources().getColor(R.color.yellow));
-    }
-}
-*/
