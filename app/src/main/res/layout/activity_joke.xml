@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linear_layout_joke_activity"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -14,6 +15,7 @@
         tools:text="Why did the chicken cross the road?"
         android:textStyle="bold"
         android:textSize="80sp"
-        android:textColor="#ffffff"/>
+        android:textColor="#ffffff"
+        android:fontFamily="Arial"/>
 
 </LinearLayout>
