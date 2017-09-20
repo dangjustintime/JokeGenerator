@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.jokegenerator.model.Joke;
 
-
 /**
  * Created by Justin Dang on 9/1/2017.
  */
@@ -21,7 +20,7 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "jokes.db";
 
-    //put SQL statement in one string
+    //put SQL statements in one string
     //create table string
     private static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE" + FeedReaderContract.FeedEntry.TABLE_NAME +
@@ -57,17 +56,17 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
 
     //add new row to database
     public void addJoke(Joke joke) {
+        SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(FeedReaderContract.FeedEntry.COLUMN_ID, joke.getId());
         values.put(FeedReaderContract.FeedEntry.COLUMN_SETUP, joke.getSetup());
         values.put(FeedReaderContract.FeedEntry.COLUMN_PUNCHLINE, joke.getPunchLine());
-        SQLiteDatabase db = getWritableDatabase();
         db.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, values);
         db.close();
     }
 
     //remove row from database
-    public void removeJoke(String jokeID) {
+    public void removeJoke(int jokeID) {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("DELETE FROM " + FeedReaderContract.FeedEntry.TABLE_NAME +
                 " WHERE " + FeedReaderContract.FeedEntry.COLUMN_ID +
